@@ -94,7 +94,7 @@ func (s *Service) GetSvAdmDbStatus() (SrpDbStatus, error) {
 	var dbStatus SrpDbStatus
 	out1, _ := s.Client.SendCmd(SrpCmds.SvAdmDbStatus)
 	dbStatus.CmdResults = append(dbStatus.CmdResults, out1)
-	if contains(out1, "Unable to connect to database") {
+	if contains(out1, "ERROR") {
 		dbStatus.DbError = true
 		return dbStatus, errors.New("err: unable to connect to database")
 	}
